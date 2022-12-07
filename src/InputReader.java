@@ -1,48 +1,58 @@
 // @author Omar Almassri omal7554
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class InputReader {
 
+    private Scanner input;
+    private static ArrayList<InputStream> inputList = new ArrayList<>();
+    
     public InputReader(InputStream in) {
         
-        if(in != null)
-            throw new IllegalStateException("An instance of the scanner is already open.");
+        if(inputList.contains(in))
+            throw new IllegalStateException("Error: An instance of the scanner is already open.");
 
-            Scanner input = new Scanner(System.in);
-        }
+            
+            this.input = new Scanner(in);
+            inputList.add(in);
+        } 
 
     public InputReader() {
 
-        InputReader(System.in);
+        this(System.in);
     }
 
     public int intReader(String promptMessage) {
-        Scanner input = new Scanner(System.in);
-        System.out.println(promptMessage + "?>");
+       
+        System.out.print(promptMessage + "?>");
         int inputtedInteger = input.nextInt();
-
-        input.close();
+        input.nextLine();
+       
         return inputtedInteger;
     }
 
     public double decimalReader(String promptMessage) {
-        Scanner input = new Scanner(System.in);
-        System.out.println(promptMessage + "?>");
+  
+        System.out.print(promptMessage + "?>");
         double inputtedDouble = input.nextDouble();
-
-        input.close();
+        input.nextLine();
+     
         return inputtedDouble;
     }
 
     public String stringReader(String promptMessage) {
-        Scanner input = new Scanner(System.in);
-        System.out.println(promptMessage + "?>");
+    
+        System.out.print(promptMessage + "?>");
         String inputtedString = input.nextLine();
 
-        input.close();
+  
         return inputtedString;
+    }
+
+    public void close() {
+        input.close();
     }
 
 }

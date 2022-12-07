@@ -178,186 +178,186 @@ public class AssignmentSixPointThreeInputClassTest extends IOBaseTest {
 		assertEquals(2, SCANNER_ADAPTER_CLASS.getPublicConstructors().count());
 	}
 
-// 	@Test
-// 	@DisplayName(value = "Har inläsningsklassen en konstruktor som tar en InputStream som parameter?")
-// 	public void classHasConstructorWithOneParameters() {
-// 		assertDoesNotThrow(() -> SCANNER_ADAPTER_CLASS.getConstructor(InputStream.class));
-// 	}
-// 
-// 	private Object getNewAdapter(InputStream in) {
-// 		var adapter = assertTimeoutPreemptively(TIMEOUT, () -> {
-// 			return SCANNER_ADAPTER_CLASS.getConstructor(InputStream.class).newInstance(in);
-// 		}, String.format(TIMEOUT_MSG_TEMPLATE, "skapa en instans av inläsningsklassen"));
-// 		return adapter;
-// 	}
-// 
-// 	private Object getNewAdapter(String input) {
-// 		return getNewAdapter(new ByteArrayInputStream((input + "\n").getBytes()));
-// 	}
-// 
-// 	private void assertPromptWas(String expected) {
-// 		assertFalse(out().get().contains("\n"), "Utskriften av ledtexten ska inte innehålla någon radbrytning");
-// 		assertFalse(out().get().contains("\r"), "Utskriften av ledtexten ska inte innehålla någon radbrytning");
-// 		out().assertStartsWith(expected, "%s ?>".formatted(expected));
-// 		out().trim().assertEndsWith("?>", "%s ?>".formatted(expected));
-// 	}
-// 
-// 	private Object callInputMethod(MethodUnderTest m, Object adapter, String prompt) {
-// 		var input = assertTimeoutPreemptively(TIMEOUT, () -> {
-// 			return m.invoke(adapter, prompt);
-// 		}, String.format(TIMEOUT_MSG_TEMPLATE, "anropa " + m));
-// 		return input;
-// 	}
-// 
-// 	private Object callInputMethod(MethodUnderTest m, String input, String prompt) {
-// 		return callInputMethod(m, getNewAdapter(input), prompt);
-// 	}
-// 
-// 	@Test
-// 	@DisplayName(value = "Fungerar metoden för att läsa ett heltal en gång?")
-// 	public void testMethodToReadInt() {
-// 		var result = callInputMethod(READ_INTEGER_METHOD, "123", "prompt integer");
-// 		assertPromptWas("prompt integer");
-// 		assertEquals(123, result);
-// 	}
-// 
-// 	@ParameterizedTest(name = "{index} språk: {0} och land: {1} betyder att {2} används som decimalavskiljare")
-// 	@CsvSource({ "en,GB,punkt", "sv,SE,komma" }) // Testar både engelska och svenska landsinställningar
-// 	@DisplayName(value = "Fungerar metoden för att läsa ett decimaltal en gång?")
-// 	public void testMethodReadDouble(String language, String country, String decimalSeparator) {
-// 		Locale defaultLocale = Locale.getDefault();
-// 
-// 		try {
-// 			Locale newLocale = new Locale.Builder().setLanguage(language).setRegion(country).build();
-// 			Locale.setDefault(newLocale);
-// 			// String.format för att landsinställningarna ska användas
-// 			var result = callInputMethod(READ_DECIMAL_METHOD, String.format("%f", 1.23), "prompt decimal");
-// 			assertPromptWas("prompt decimal");
-// 			assertEquals(1.23, result);
-// 		} finally {
-// 			Locale.setDefault(defaultLocale);
-// 		}
-// 	}
-// 
-// 	@Test
-// 	@DisplayName(value = "Fungerar metoden för att läsa text en gång?")
-// 	public void testMethodToReadText() {
-// 		var result = callInputMethod(READ_TEXT_METHOD, "input text", "prompt text");
-// 		assertPromptWas("prompt text");
-// 		assertEqualsIgnoreCase("input text", result);
-// 	}
-// 
-// 	@Test
-// 	@DisplayName(value = "Töms inmatningsbufferten efter att ett heltal lästs in?")
-// 	public void readingIntegerClearsBuffer() {
-// 		Object adapter = getNewAdapter("1\ntext");
-// 		Object result = callInputMethod(READ_INTEGER_METHOD, adapter, "prompt");
-// 		assertEquals(1, result);
-// 		result = callInputMethod(READ_TEXT_METHOD, adapter, "prompt");
-// 		assertEqualsIgnoreCase("text", result);
-// 	}
-// 
-// 	@Test
-// 	@DisplayName(value = "Töms inmatningsbufferten efter att ett decimaltal lästs in?")
-// 	public void readingDecimalClearsBuffer() {
-// 		Object adapter = getNewAdapter(String.format("%.1f%ntext", 1.2));
-// 		Object result = callInputMethod(READ_DECIMAL_METHOD, adapter, "prompt");
-// 		assertEquals(1.2, result);
-// 		result = callInputMethod(READ_TEXT_METHOD, adapter, "prompt");
-// 		assertEqualsIgnoreCase("text", result);
-// 	}
-// 
-// 	@Test
-// 	@DisplayName(value = "Fungerar blandad inläsning?")
-// 	public void readingDifferentThingsDoesNotCauseProblemsWithBuffering() {
-// 		Object adapter = getNewAdapter(String.format("%s%n%d%n%f%n%d%n%s%n%f%n", "first", 2, 3.0, 4, "fifth", 6.0));
-// 		Object result;
-// 		result = callInputMethod(READ_TEXT_METHOD, adapter, "prompt");
-// 		assertEqualsIgnoreCase("first", result);
-// 		result = callInputMethod(READ_INTEGER_METHOD, adapter, "prompt");
-// 		assertEquals(2, result);
-// 		result = callInputMethod(READ_DECIMAL_METHOD, adapter, "prompt");
-// 		assertEquals(3.0, result);
-// 		result = callInputMethod(READ_INTEGER_METHOD, adapter, "prompt");
-// 		assertEquals(4, result);
-// 		result = callInputMethod(READ_TEXT_METHOD, adapter, "prompt");
-// 		assertEqualsIgnoreCase("fifth", result);
-// 		result = callInputMethod(READ_DECIMAL_METHOD, adapter, "prompt");
-// 		assertEquals(6.0, result);
-// 	}
-// 
-// 	@Test
-// 	@DisplayName(value = "Kastas ett undantag när man försöker skapa flera instanser av inläsningsklassen som läser från olika källor?")
-// 	public void creatingMultipleAdaptersDoesNotThrowExceptionWhenReadingFromDifferentStreams() {
-// 		assertDoesNotThrow(() -> {
-// 			getNewAdapter(new ByteArrayInputStream(new byte[] {}));
-// 		}, "Det första försöket att skapa ett objekt av klassen borde lyckats");
-// 		assertDoesNotThrow(() -> {
-// 			getNewAdapter(new ByteArrayInputStream(new byte[] {}));
-// 		}, "Det andra försöket att skapa ett objekt av klassen borde också lyckats eftersom det läser från en annan källa");
-// 	}
-// 
-// 	@Test
-// 	@DisplayName(value = "Kastas ett undantag när man försöker skapa flera instanser av inläsningsklassen som läser från samma källa?")
-// 	public void creatingMultipleAdaptersThrowsException() {
-// 		InputStream in = new ByteArrayInputStream(new byte[] {});
-// 		assertDoesNotThrow(() -> {
-// 			getNewAdapter(in);
-// 		}, "Det första försöket att skapa ett objekt av klassen borde lyckats");
-// 		Throwable e = assertThrows(RuntimeException.class, () -> {
-// 			getNewAdapter(in);
-// 		}, "Det andra försöket att skapa ett objekt av klassen borde misslyckats");
-// 		assertEquals(IllegalStateException.class, e.getCause().getClass(), "Fel typ av undantag kastas");
-// 	}
-// 
-// 	@ParameterizedTest(name = "InputStream nr {0} upprepas")
-// 	@ValueSource(ints = { 1, 2, 5, 10 })
-// 	@DisplayName(value = "Kastas ett undantag när man försöker skapa flera instanser av inläsningsklassen som läser från samma källa, även om de inte skapas direkt efter varandra?")
-// 	public void creatingMultipleAdaptersThrowsException(int i) {
-// 		final InputStream[] repeated = { null };
-// 		for (int n = 1; n <= i * 3; n++) {
-// 			InputStream in = new ByteArrayInputStream("".getBytes());
-// 			getNewAdapter(in);
-// 			if (n == i)
-// 				repeated[0] = in;
-// 		}
-// 
-// 		Throwable e = assertThrows(RuntimeException.class, () -> {
-// 			getNewAdapter(repeated[0]);
-// 		}, "Det andra försöket att skapa ett objekt av klassen borde misslyckats");
-// 		assertEquals(IllegalStateException.class, e.getCause().getClass(), "Fel typ av undantag kastas");
-// 	}
-// 
-// 	@Test
-// 	@DisplayName(value = "Fungerar det att läsa från flera instanser parallellt?")
-// 	public void readingFromMultipleStreamsInParallellGivesCorrectInput() {
-// 		Object first = getNewAdapter(String.format("1\n2\n3\n"));
-// 		Object second = getNewAdapter(String.format("A\nB\nC\n"));
-// 
-// 		final String MSG = "Fel värde inläst";
-// 
-// 		assertEquals(1, callInputMethod(READ_INTEGER_METHOD, first, "prompt"), MSG);
-// 		assertEqualsIgnoreCase("A", callInputMethod(READ_TEXT_METHOD, second, "prompt"), MSG);
-// 		assertEquals(2, callInputMethod(READ_INTEGER_METHOD, first, "prompt"), MSG);
-// 		assertEqualsIgnoreCase("B", callInputMethod(READ_TEXT_METHOD, second, "prompt"), MSG);
-// 		assertEquals(3, callInputMethod(READ_INTEGER_METHOD, first, "prompt"), MSG);
-// 		assertEqualsIgnoreCase("C", callInputMethod(READ_TEXT_METHOD, second, "prompt"), MSG);
-// 
-// 	}
-// 
-// 	@Test
-// 	@DisplayName(value = "Har inläsningsklassen några onödiga statiska fält?")
-// 	public void noUnnecessaryStaticFields() {
-// 		assertTrue(SCANNER_ADAPTER_CLASS.getClassVariables().count() <= 1,
-// 				"Det borde inte finnas något behov av mer än max en statisk variabel i inläsningsklassen. (Konstanter är en annan sak, där kan det vara bra med någon till.)");
-// 	}
-// 
-// 	@Test
-// 	@DisplayName(value = "Har inläsningsklassen några statiska metoder?")
-// 	public void noStaticMethods() {
-// 		assertEquals(0, SCANNER_ADAPTER_CLASS.getClassMethods().count(),
-// 				"Det borde inte finnas något behov av några statiska metoder i inläsningsklassen.");
-// 	}
-// 
+	@Test
+	@DisplayName(value = "Har inläsningsklassen en konstruktor som tar en InputStream som parameter?")
+	public void classHasConstructorWithOneParameters() {
+		assertDoesNotThrow(() -> SCANNER_ADAPTER_CLASS.getConstructor(InputStream.class));
+	}
+
+	private Object getNewAdapter(InputStream in) {
+		var adapter = assertTimeoutPreemptively(TIMEOUT, () -> {
+			return SCANNER_ADAPTER_CLASS.getConstructor(InputStream.class).newInstance(in);
+		}, String.format(TIMEOUT_MSG_TEMPLATE, "skapa en instans av inläsningsklassen"));
+		return adapter;
+	}
+
+	private Object getNewAdapter(String input) {
+		return getNewAdapter(new ByteArrayInputStream((input + "\n").getBytes()));
+	}
+
+	private void assertPromptWas(String expected) {
+		assertFalse(out().get().contains("\n"), "Utskriften av ledtexten ska inte innehålla någon radbrytning");
+		assertFalse(out().get().contains("\r"), "Utskriften av ledtexten ska inte innehålla någon radbrytning");
+		out().assertStartsWith(expected, "%s ?>".formatted(expected));
+		out().trim().assertEndsWith("?>", "%s ?>".formatted(expected));
+	}
+
+	private Object callInputMethod(MethodUnderTest m, Object adapter, String prompt) {
+		var input = assertTimeoutPreemptively(TIMEOUT, () -> {
+			return m.invoke(adapter, prompt);
+		}, String.format(TIMEOUT_MSG_TEMPLATE, "anropa " + m));
+		return input;
+	}
+
+	private Object callInputMethod(MethodUnderTest m, String input, String prompt) {
+		return callInputMethod(m, getNewAdapter(input), prompt);
+	}
+
+	@Test
+	@DisplayName(value = "Fungerar metoden för att läsa ett heltal en gång?")
+	public void testMethodToReadInt() {
+		var result = callInputMethod(READ_INTEGER_METHOD, "123", "prompt integer");
+		assertPromptWas("prompt integer");
+		assertEquals(123, result);
+	}
+
+	@ParameterizedTest(name = "{index} språk: {0} och land: {1} betyder att {2} används som decimalavskiljare")
+	@CsvSource({ "en,GB,punkt", "sv,SE,komma" }) // Testar både engelska och svenska landsinställningar
+	@DisplayName(value = "Fungerar metoden för att läsa ett decimaltal en gång?")
+	public void testMethodReadDouble(String language, String country, String decimalSeparator) {
+		Locale defaultLocale = Locale.getDefault();
+
+		try {
+			Locale newLocale = new Locale.Builder().setLanguage(language).setRegion(country).build();
+			Locale.setDefault(newLocale);
+			// String.format för att landsinställningarna ska användas
+			var result = callInputMethod(READ_DECIMAL_METHOD, String.format("%f", 1.23), "prompt decimal");
+			assertPromptWas("prompt decimal");
+			assertEquals(1.23, result);
+		} finally {
+			Locale.setDefault(defaultLocale);
+		}
+	}
+
+	@Test
+	@DisplayName(value = "Fungerar metoden för att läsa text en gång?")
+	public void testMethodToReadText() {
+		var result = callInputMethod(READ_TEXT_METHOD, "input text", "prompt text");
+		assertPromptWas("prompt text");
+		assertEqualsIgnoreCase("input text", result);
+	}
+
+	@Test
+	@DisplayName(value = "Töms inmatningsbufferten efter att ett heltal lästs in?")
+	public void readingIntegerClearsBuffer() {
+		Object adapter = getNewAdapter("1\ntext");
+		Object result = callInputMethod(READ_INTEGER_METHOD, adapter, "prompt");
+		assertEquals(1, result);
+		result = callInputMethod(READ_TEXT_METHOD, adapter, "prompt");
+		assertEqualsIgnoreCase("text", result);
+	}
+
+	@Test
+	@DisplayName(value = "Töms inmatningsbufferten efter att ett decimaltal lästs in?")
+	public void readingDecimalClearsBuffer() {
+		Object adapter = getNewAdapter(String.format("%.1f%ntext", 1.2));
+		Object result = callInputMethod(READ_DECIMAL_METHOD, adapter, "prompt");
+		assertEquals(1.2, result);
+		result = callInputMethod(READ_TEXT_METHOD, adapter, "prompt");
+		assertEqualsIgnoreCase("text", result);
+	}
+
+	@Test
+	@DisplayName(value = "Fungerar blandad inläsning?")
+	public void readingDifferentThingsDoesNotCauseProblemsWithBuffering() {
+		Object adapter = getNewAdapter(String.format("%s%n%d%n%f%n%d%n%s%n%f%n", "first", 2, 3.0, 4, "fifth", 6.0));
+		Object result;
+		result = callInputMethod(READ_TEXT_METHOD, adapter, "prompt");
+		assertEqualsIgnoreCase("first", result);
+		result = callInputMethod(READ_INTEGER_METHOD, adapter, "prompt");
+		assertEquals(2, result);
+		result = callInputMethod(READ_DECIMAL_METHOD, adapter, "prompt");
+		assertEquals(3.0, result);
+		result = callInputMethod(READ_INTEGER_METHOD, adapter, "prompt");
+		assertEquals(4, result);
+		result = callInputMethod(READ_TEXT_METHOD, adapter, "prompt");
+		assertEqualsIgnoreCase("fifth", result);
+		result = callInputMethod(READ_DECIMAL_METHOD, adapter, "prompt");
+		assertEquals(6.0, result);
+	}
+
+	@Test
+	@DisplayName(value = "Kastas ett undantag när man försöker skapa flera instanser av inläsningsklassen som läser från olika källor?")
+	public void creatingMultipleAdaptersDoesNotThrowExceptionWhenReadingFromDifferentStreams() {
+		assertDoesNotThrow(() -> {
+			getNewAdapter(new ByteArrayInputStream(new byte[] {}));
+		}, "Det första försöket att skapa ett objekt av klassen borde lyckats");
+		assertDoesNotThrow(() -> {
+			getNewAdapter(new ByteArrayInputStream(new byte[] {}));
+		}, "Det andra försöket att skapa ett objekt av klassen borde också lyckats eftersom det läser från en annan källa");
+	}
+
+	@Test
+	@DisplayName(value = "Kastas ett undantag när man försöker skapa flera instanser av inläsningsklassen som läser från samma källa?")
+	public void creatingMultipleAdaptersThrowsException() {
+		InputStream in = new ByteArrayInputStream(new byte[] {});
+		assertDoesNotThrow(() -> {
+			getNewAdapter(in);
+		}, "Det första försöket att skapa ett objekt av klassen borde lyckats");
+		Throwable e = assertThrows(RuntimeException.class, () -> {
+			getNewAdapter(in);
+		}, "Det andra försöket att skapa ett objekt av klassen borde misslyckats");
+		assertEquals(IllegalStateException.class, e.getCause().getClass(), "Fel typ av undantag kastas");
+	}
+
+	@ParameterizedTest(name = "InputStream nr {0} upprepas")
+	@ValueSource(ints = { 1, 2, 5, 10 })
+	@DisplayName(value = "Kastas ett undantag när man försöker skapa flera instanser av inläsningsklassen som läser från samma källa, även om de inte skapas direkt efter varandra?")
+	public void creatingMultipleAdaptersThrowsException(int i) {
+		final InputStream[] repeated = { null };
+		for (int n = 1; n <= i * 3; n++) {
+			InputStream in = new ByteArrayInputStream("".getBytes());
+			getNewAdapter(in);
+			if (n == i)
+				repeated[0] = in;
+		}
+
+		Throwable e = assertThrows(RuntimeException.class, () -> {
+			getNewAdapter(repeated[0]);
+		}, "Det andra försöket att skapa ett objekt av klassen borde misslyckats");
+		assertEquals(IllegalStateException.class, e.getCause().getClass(), "Fel typ av undantag kastas");
+	}
+
+	@Test
+	@DisplayName(value = "Fungerar det att läsa från flera instanser parallellt?")
+	public void readingFromMultipleStreamsInParallellGivesCorrectInput() {
+		Object first = getNewAdapter(String.format("1\n2\n3\n"));
+		Object second = getNewAdapter(String.format("A\nB\nC\n"));
+
+		final String MSG = "Fel värde inläst";
+
+		assertEquals(1, callInputMethod(READ_INTEGER_METHOD, first, "prompt"), MSG);
+		assertEqualsIgnoreCase("A", callInputMethod(READ_TEXT_METHOD, second, "prompt"), MSG);
+		assertEquals(2, callInputMethod(READ_INTEGER_METHOD, first, "prompt"), MSG);
+		assertEqualsIgnoreCase("B", callInputMethod(READ_TEXT_METHOD, second, "prompt"), MSG);
+		assertEquals(3, callInputMethod(READ_INTEGER_METHOD, first, "prompt"), MSG);
+		assertEqualsIgnoreCase("C", callInputMethod(READ_TEXT_METHOD, second, "prompt"), MSG);
+
+	}
+
+	@Test
+	@DisplayName(value = "Har inläsningsklassen några onödiga statiska fält?")
+	public void noUnnecessaryStaticFields() {
+		assertTrue(SCANNER_ADAPTER_CLASS.getClassVariables().count() <= 1,
+				"Det borde inte finnas något behov av mer än max en statisk variabel i inläsningsklassen. (Konstanter är en annan sak, där kan det vara bra med någon till.)");
+	}
+
+	@Test
+	@DisplayName(value = "Har inläsningsklassen några statiska metoder?")
+	public void noStaticMethods() {
+		assertEquals(0, SCANNER_ADAPTER_CLASS.getClassMethods().count(),
+				"Det borde inte finnas något behov av några statiska metoder i inläsningsklassen.");
+	}
+
 
 }
