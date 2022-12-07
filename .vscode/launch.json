@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch DogTests",
+            "request": "launch",
+            "mainClass": "DogTests",
+            "projectName": "hundregister_dbc6667b"
+        }
+    ]
+}
