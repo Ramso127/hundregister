@@ -6,9 +6,9 @@ import java.util.Scanner;
 
 public class InputReader {
 
-    private Scanner input;
     private static ArrayList<InputStream> inputList = new ArrayList<>();
-    
+    private Scanner input;
+
     public InputReader(InputStream in) {
         
         if(inputList.contains(in))
