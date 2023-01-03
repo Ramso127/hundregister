@@ -1,7 +1,4 @@
-
-
-
-// NAMN OCH ANVÄNDARNAMN
+// @author Omar Almassri omal7554
 
 /**
  * Denna klass är till för att möjliggöra testning av de klasser och metoder som
@@ -73,24 +70,24 @@ public final class TestData {
 	/**
 	 * Detta är namnet på din hundlistklass från U7.6.
 	 */
-	public static final String DOG_LIST_CLASS_NAME = "...";
+	public static final String DOG_LIST_CLASS_NAME = "DogCatalog";
 
 	/**
 	 * Detta är namnet på metoden i hundlistklassen som lägger till en hund till
 	 * listan.
 	 */
-	public static final String DOG_LIST_CLASS_ADD_DOG_METHOD_NAME = "...";
+	public static final String DOG_LIST_CLASS_ADD_DOG_METHOD_NAME = "addDog";
 
 	/**
 	 * Detta är namnet på metoden i hundlistklassen som tar bort en hund ur listan.
 	 */
-	public static final String DOG_LIST_CLASS_REMOVE_DOG_METHOD_NAME = "...";
+	public static final String DOG_LIST_CLASS_REMOVE_DOG_METHOD_NAME = "removeDog";
 
 	/**
 	 * Detta är namnet på metoden i hundlistklassen som kontrollerar om en given
 	 * hund finns i listan eller inte.
 	 */
-	public static final String DOG_LIST_CLASS_DOG_EXISTS_METHOD_NAME = "...";
+	public static final String DOG_LIST_CLASS_DOG_EXISTS_METHOD_NAME = "containsDog";
 
 	//////////////////////////////////////////////////////////////////////////
 	// Konstanter som rör metoder i klassen Owner (introduceras i U8.1)
@@ -124,7 +121,7 @@ public final class TestData {
 	 * Detta är namnet på instansvariabeln som håller klassens lista av hundar. Den
 	 * introduceras i U7.1.
 	 */
-	public static final String MAIN_DOG_LIST_NAME = "...";
+	public static final String MAIN_DOG_LIST_NAME = "dogList";
 
 	/**
 	 * Detta är namnet på instansvariabeln som håller klassens lista av ägare. Den
@@ -141,7 +138,7 @@ public final class TestData {
 	 * Konstanten ska innehålla namnet på metoden för att hitta en given hund. Denna
 	 * metod introduceras i U7.3.
 	 */
-	public static final String FIND_DOG_METHOD_NAME = "...";
+	public static final String FIND_DOG_METHOD_NAME = "findDog";
 
 	/**
 	 * Konstanten ska innehålla namnet på metoden för att hitta en given ägare.
@@ -154,33 +151,33 @@ public final class TestData {
 	 * tillräckligt lång svans som kan implementeras i U7.2. Denna är inte
 	 * obligatorisk, men gör det lättare att implementera den föregående metoden.
 	 */
-	public static final String FIND_DOGS_WITH_TAILLENGTH_METHOD_NAME = "...";
+	public static final String FIND_DOGS_WITH_TAILLENGTH_METHOD_NAME = "findDogsWithTailLength";
 
 	/**
 	 * Konstanten ska innehålla namnet på metoden för att byta plats på två hundar
 	 * med din egen implementation av bytet. Denna metod introduceras i U7.7,
 	 * specifikt U7.7.1.1.
 	 */
-	public static final String SWAP_DOGS_OWN_METHOD_NAME = "...";
+	public static final String SWAP_DOGS_OWN_METHOD_NAME = "swapDogs";
 
 	/**
 	 * Konstanten ska innehålla namnet på metoden för att byta plats på två hundar
 	 * med hjälp av Collections.swap. Denna metod introduceras i U7.7, specifikt
 	 * U7.7.1.2.
 	 */
-	public static final String SWAP_DOGS_USING_CLASS_LIBRARY_METHOD_NAME = "...";
+	public static final String SWAP_DOGS_USING_CLASS_LIBRARY_METHOD_NAME = "swapDogsUsingClassLibrary";
 
 	/**
 	 * Konstanten ska innehålla namnet på metoden för att hitta den "..." av de
 	 * kvarvarande hundarna. Denna metod introduceras i U7.7, specifikt U7.7.3.
 	 */
-	public static final String FIND_SMALLEST_METHOD_NAME = "...";
+	public static final String FIND_SMALLEST_METHOD_NAME = "findSmallestDog";
 
 	/**
 	 * Konstanten ska innehålla namnet på metoden för att sortera hundarna. Denna
 	 * metod introduceras i U7.7, specifikt U7.7.4.
 	 */
-	public static final String SORT_DOGS_METHOD_NAME = "...";
+	public static final String SORT_DOGS_METHOD_NAME = "sortDogs";
 
 	//////////////////////////////////////////////////////////////////////////
 	// Konstanter som rör metoderna du ska skriva i de klasser som heter
@@ -192,22 +189,22 @@ public final class TestData {
 	/**
 	 * Konstanten ska innehålla namnet på metoden som ska implementeras i U7.1.
 	 */
-	public static final String REGISTER_NEW_DOG_METHOD_NAME = "...";
+	public static final String REGISTER_NEW_DOG_METHOD_NAME = "registerNewDog";
 
 	/**
 	 * Konstanten ska innehålla namnet på metoden som ska implementeras i U7.2.
 	 */
-	public static final String LIST_DOGS_METHOD_NAME = "...";
+	public static final String LIST_DOGS_METHOD_NAME = "listDogsWithTailLength";
 
 	/**
 	 * Konstanten ska innehålla namnet på metoden som ska implementeras i U7.4.
 	 */
-	public static final String INCREASE_AGE_METHOD_NAME = "...";
+	public static final String INCREASE_AGE_METHOD_NAME = "increaseAge";
 
 	/**
 	 * Konstanten ska innehålla namnet på metoden som ska implementeras i U7.5.
 	 */
-	public static final String REMOVE_DOG_METHOD_NAME = "...";
+	public static final String REMOVE_DOG_METHOD_NAME = "removeDog";
 
 	/**
 	 * Konstanten ska innehålla namnet på metoden som ska implementeras i U8.1.

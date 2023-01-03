@@ -36,8 +36,9 @@ public class Dog {
     }
 
     public double getTailLength() {
+        final double DACHSHUND_TAIL_LENGTH = 3.7;
         if(breed.equals("tax") || breed.equals("dachshund")) {
-            tailLength = 3.7; // all dachshund has the taillength 3.7
+            tailLength = DACHSHUND_TAIL_LENGTH; 
         } else {
             tailLength = age * weight / 10.0;
         } return tailLength;
