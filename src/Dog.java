@@ -7,9 +7,10 @@ public class Dog {
     private int age;
     private int weight;
     private double tailLength;
+    private Owner owner;
 
     public Dog(String name, String breed, int age, int weight) {
-        this.name = name.toLowerCase().strip();
+        this.name = name.strip();
         this.breed = breed.toLowerCase().strip();
         this.age = age;
         this.weight = weight;
@@ -44,8 +45,39 @@ public class Dog {
         } return tailLength;
     }
 
-    public String toString() {
-        return "The dog " + name + " is of the " + breed + " breed, is " + age + " years old, weighs " + weight + " kilogram and has the tail length " + getTailLength() + ".";
-    }
     
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) { 
+        if (this.owner != null)
+            return;
+
+        this.owner = owner;
+            
+        if (owner != null && !owner.ownsDog(this))
+        owner.recieveDog(this);
+    }
+
+    public void removeOwnerOfDog() {
+        if (owner == null)
+            return;
+        Owner tempOwner = owner;
+        owner = null;
+        tempOwner.removeDogFromOwner(this);
+    }
+
+
+
+    @Override
+    public String toString() {
+        String dogsOwner;
+        if (owner != null)
+            dogsOwner = ", owned by " + owner.getName();
+        else
+           dogsOwner = ""; 
+
+        return "* " + name + " (" + breed + ", " + age + " years, " + weight + "kilo, " + getTailLength() + " cm tail" + dogsOwner + ")";
+    }
 }

@@ -7,15 +7,12 @@ public class AssignmentSevenPointOne {
 
 
     private ArrayList<Dog> dogList = new ArrayList<>();
-    public ArrayList<Dog> getDogList() {
-        return dogList;
-    }
-
+    // public ArrayList<Dog> getDogList() {
+    //     return dogList;
+    // }
     private InputReader inputReader = new InputReader();
 
     public void registerNewDog() {
-
-        
 
         String name = inputReader.stringReader("Name").strip(); //strip behövs bara för vpl annars inte.
         while (name.strip().equals("")) {
