@@ -1,27 +1,27 @@
-// @author Omar Almassri omal7554
-
 import java.util.ArrayList;
+
+// @author Omar Almassri omal7554
 
 public class AssignmentEightPointThree {
 
     private ArrayList<Dog> dogList = new ArrayList<>();
     private ArrayList<Owner> ownerList = new ArrayList<>();
     private InputReader inputReader = new InputReader();
-  
-    //7.3 (find dog with name)
+
+    // 7.3 (find dog with name)
     private Dog findDog(String dogName) {
         dogName = dogName.strip();
-        for(Dog dog: dogList) {
-            if(dog.getName().equalsIgnoreCase(dogName))
-            return dog;
+        for (Dog dog : dogList) {
+            if (dog.getName().equalsIgnoreCase(dogName))
+                return dog;
         }
         return null;
     }
 
-    //8.2 (find owner with name)
+    // 8.2 (find owner with name)
     private Owner findOwner(String name) {
         name = name.strip();
-        for (Owner owner: ownerList) {
+        for (Owner owner : ownerList) {
             if (owner.getName().equalsIgnoreCase(name))
                 return owner;
         }
@@ -30,11 +30,11 @@ public class AssignmentEightPointThree {
 
     public void giveDog() {
         String dogName = inputReader.stringReader("Enter the name of the dog");
-        
-        while (dogName.isBlank()){
-            dogName = inputReader.stringReader("Error: no dog with that name");
+
+        while (dogName.isBlank()) {
+            dogName = inputReader.stringReader("Error: the dogs name can not be empty");
         }
-        
+
         Dog dog = findDog(dogName);
         if (dog == null) {
             System.out.println("Error: no dog with that name");
@@ -48,8 +48,8 @@ public class AssignmentEightPointThree {
 
         String ownerName = inputReader.stringReader("Enter the name of the new owner");
 
-        while(ownerName.isBlank()) {
-            ownerName = inputReader.stringReader("Error: no such owner");
+        while (ownerName.isBlank()) {
+            ownerName = inputReader.stringReader("Error: the owners name can not be empty");
         }
 
         Owner owner = findOwner(ownerName);
@@ -57,7 +57,7 @@ public class AssignmentEightPointThree {
             System.out.println("Error: no such owner");
             return;
         }
-  
+
         owner.recieveDog(dog);
 
         System.out.println(ownerName + " now owns " + dogName);

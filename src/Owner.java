@@ -1,22 +1,21 @@
 // @author Omar Almassri omal7554
 
 public class Owner {
-    
+
     private String name;
     private DogCatalog ownedDogs;
 
     public Owner(String name) {
         this.name = name.strip();
-        ownedDogs = new DogCatalog(); 
+        ownedDogs = new DogCatalog();
     }
 
     public String getName() {
         return name;
     }
 
-
     public void recieveDog(Dog dog) {
-        if (dog.getOwner() != null && !dog.getOwner().equals(this)) 
+        if (dog.getOwner() != null && !dog.getOwner().equals(this))
             return;
 
         if (!ownedDogs.containsDog(dog)) {
@@ -42,6 +41,6 @@ public class Owner {
 
     @Override
     public String toString() {
-        return name + " " + ownedDogs.allDogNames(); 
+        return name + " " + ownedDogs.allDogNames();
     }
 }

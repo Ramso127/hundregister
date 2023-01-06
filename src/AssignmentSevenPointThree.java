@@ -1,6 +1,6 @@
-// @author Omar Almassri omal7554
-
 import java.util.ArrayList;
+
+// @author Omar Almassri omal7554
 
 public class AssignmentSevenPointThree {
 
@@ -10,13 +10,13 @@ public class AssignmentSevenPointThree {
 
         dogName = dogName.strip();
 
-        for(Dog dog: dogList) {
-            if(dog.getName().equalsIgnoreCase(dogName))
-            return dog;
+        for (Dog dog : dogList) {
+            if (dog.getName().equalsIgnoreCase(dogName))
+                return dog;
         }
 
         return null;
 
     }
-    
+
 }

@@ -1,9 +1,9 @@
-// @author Omar Almassri omal7554
-
 import java.util.ArrayList;
 
+// @author Omar Almassri omal7554
+
 public class AssignmentEightPointOne {
-    
+
     private ArrayList<Owner> ownerList = new ArrayList<>();
     private InputReader inputReader = new InputReader();
 

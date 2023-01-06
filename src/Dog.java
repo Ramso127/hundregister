@@ -19,7 +19,7 @@ public class Dog {
     public String getName() {
         return name;
     }
-    
+
     public String getBreed() {
         return breed;
     }
@@ -29,7 +29,7 @@ public class Dog {
     }
 
     public void increaseAge(int increaseAgeBy) {
-       age = increaseAgeBy > 0 ? age + increaseAgeBy : age;
+        age = increaseAgeBy > 0 ? age + increaseAgeBy : age;
     }
 
     public int getWeight() {
@@ -38,26 +38,26 @@ public class Dog {
 
     public double getTailLength() {
         final double DACHSHUND_TAIL_LENGTH = 3.7;
-        if(breed.equals("tax") || breed.equals("dachshund")) {
-            tailLength = DACHSHUND_TAIL_LENGTH; 
+        if (breed.equals("tax") || breed.equals("dachshund")) {
+            tailLength = DACHSHUND_TAIL_LENGTH;
         } else {
             tailLength = age * weight / 10.0;
-        } return tailLength;
+        }
+        return tailLength;
     }
 
-    
     public Owner getOwner() {
         return owner;
     }
 
-    public void setOwner(Owner owner) { 
+    public void setOwner(Owner owner) {
         if (this.owner != null)
             return;
 
         this.owner = owner;
-            
+
         if (owner != null && !owner.ownsDog(this))
-        owner.recieveDog(this);
+            owner.recieveDog(this);
     }
 
     public void removeOwnerOfDog() {
@@ -68,16 +68,15 @@ public class Dog {
         tempOwner.removeDogFromOwner(this);
     }
 
-
-
     @Override
     public String toString() {
         String dogsOwner;
         if (owner != null)
             dogsOwner = ", owned by " + owner.getName();
         else
-           dogsOwner = ""; 
+            dogsOwner = "";
 
-        return "* " + name + " (" + breed + ", " + age + " years, " + weight + "kilo, " + getTailLength() + " cm tail" + dogsOwner + ")";
+        return "* " + name + " (" + breed + ", " + age + " years, " + weight + "kilo, " + getTailLength() + " cm tail"
+                + dogsOwner + ")";
     }
 }

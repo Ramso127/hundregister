@@ -1,29 +1,25 @@
-// @author Omar Almassri omal7554
-
 import java.util.ArrayList;
+
+// @author Omar Almassri omal7554
 
 public class AssignmentSevenPointOne {
 
-
-
     private ArrayList<Dog> dogList = new ArrayList<>();
-    // public ArrayList<Dog> getDogList() {
-    //     return dogList;
-    // }
+
     private InputReader inputReader = new InputReader();
 
     public void registerNewDog() {
 
-        String name = inputReader.stringReader("Name").strip(); //strip behövs bara för vpl annars inte.
-        while (name.strip().equals("")) {
+        String name = inputReader.stringReader("Name").strip(); // strip only needed for vpl.
+        while (name.isBlank()) {
             name = inputReader.stringReader("Error: the name can not be empty").strip();
         }
 
         String breed = inputReader.stringReader("Breed").strip();
-        while (breed.strip().equals("")) {
+        while (breed.isBlank()) {
             breed = inputReader.stringReader(" Error: the breed can not be empty").strip();
         }
-      
+
         int age = inputReader.intReader("Age");
         int weight = inputReader.intReader("Weight");
 
