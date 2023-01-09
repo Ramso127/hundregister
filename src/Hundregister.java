@@ -5,12 +5,21 @@ import java.util.Arrays;
 
 public class Hundregister {
 
-    // private static final...
-
     private ArrayList<Dog> dogList = new ArrayList<>();
     private ArrayList<Owner> ownerList = new ArrayList<>();
     private InputReader inputReader = new InputReader();
     private ArrayList<Dog> dogsToRemove = new ArrayList<>();
+
+    private static final String REGISTER_NEW_DOG_COMMAND = "register new dog";
+    private static final String LIST_DOGS_COMMAND = "list dogs";
+    private static final String INCREASE_AGE_COMMAND = "increase age";
+    private static final String REMOVE_DOG_COMMAND = "remove dog";
+    private static final String REGISTER_NEW_OWNER_COMMAND = "register new owner";
+    private static final String GIVE_DOG_COMMAND = "give dog";
+    private static final String LIST_OWNERS_COMMAND = "list owners";
+    private static final String REMOVE_OWNED_DOG_COMMAND = "remove owned dog";
+    private static final String REMOVE_OWNER_COMMAND = "remove owner";
+    private static final String EXIT_COMMAND = "exit";
 
     public static void main(String[] args) {
         new Hundregister().run();
@@ -23,17 +32,16 @@ public class Hundregister {
 
     private void printCommandMenu() {
         System.out.println("The following commands are available: ");
-        System.out.println("rnd: register new dog");
-        System.out.println("ld: list dogs");
-        System.out.println("ia: increase age");
-        System.out.println("rd: remove dog");
-        System.out.println("rno: register new owner");
-        System.out.println("gd: give dog");
-        System.out.println("lo: list owners");
-        System.out.println("rod: remove owned dog");
-        System.out.println("ro: remove owner");
-        System.out.println("e: exit");
-        System.out.println();
+        System.out.println("register new dog");
+        System.out.println("list dogs");
+        System.out.println("increase age");
+        System.out.println("remove dog");
+        System.out.println("register new owner");
+        System.out.println("give dog");
+        System.out.println("list owners");
+        System.out.println("remove owned dog");
+        System.out.println("remove owner");
+        System.out.println("exit");
     }
 
     private void setup() {
@@ -47,7 +55,7 @@ public class Hundregister {
         do {
             command = readCommand();
             handleCommand(command);
-        } while (!command.equals("e"));
+        } while (!command.equals(EXIT_COMMAND));
     }
 
     private String readCommand() {
@@ -56,35 +64,35 @@ public class Hundregister {
 
     private void handleCommand(String command) {
         switch (command) {
-            case "rnd":
+            case REGISTER_NEW_DOG_COMMAND:
                 registerNewDog();
                 break;
-            case "ld":
+            case LIST_DOGS_COMMAND:
                 sortDogs();
                 listDogsWithTailLength();
                 break;
-            case "ia":
+            case INCREASE_AGE_COMMAND:
                 increaseAge();
                 break;
-            case "rd":
+            case REMOVE_DOG_COMMAND:
                 removeDog();
                 break;
-            case "rno":
+            case REGISTER_NEW_OWNER_COMMAND:
                 registerNewOwner();
                 break;
-            case "gd":
+            case GIVE_DOG_COMMAND:
                 giveDog();
                 break;
-            case "lo":
+            case LIST_OWNERS_COMMAND:
                 listOwners();
                 break;
-            case "rod":
+            case REMOVE_OWNED_DOG_COMMAND:
                 removeOwnedDog();
                 break;
-            case "ro":
+            case REMOVE_OWNER_COMMAND:
                 removeOwner();
                 break;
-            case "e":
+            case EXIT_COMMAND:
                 System.out.println("Goodbye!");
                 break;
             default:
@@ -152,7 +160,6 @@ public class Hundregister {
     }
 
     private void sortDogs() {
-        // int amountOfSwaps = 0;
         int startIndex = 0;
 
         for (int i = 0; i < dogList.size() - 1; i++) {
@@ -160,11 +167,9 @@ public class Hundregister {
 
             if (smallestDogIndex != startIndex) {
                 swapDogs(startIndex, smallestDogIndex);
-                // amountOfSwaps++;
             }
             startIndex++;
         }
-        // return amountOfSwaps;
     }
 
     private ArrayList<Dog> findDogsWithTailLength(double smallestTailLength) {
