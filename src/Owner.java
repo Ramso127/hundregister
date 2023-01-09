@@ -41,6 +41,6 @@ public class Owner {
 
     @Override
     public String toString() {
-        return name + " " + ownedDogs.allDogNames();
+        return name + " [" + ownedDogs.allDogNames() + "]";
     }
 }

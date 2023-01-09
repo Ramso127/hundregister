@@ -6,10 +6,10 @@ public class DogCatalog {
     private int amountOfDogs;
 
     public String allDogNames() {
-        String dogNames = "[";
+        String dogNames = "";
         for (int i = 0; i < amountOfDogs; i++) {
             if (i == amountOfDogs - 1)
-                dogNames += dogs[i].getName() + "]";
+                dogNames += dogs[i].getName();
             else
                 dogNames += dogs[i].getName() + ", ";
         }

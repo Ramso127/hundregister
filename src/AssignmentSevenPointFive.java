@@ -22,8 +22,8 @@ public class AssignmentSevenPointFive {
     }
 
     public void removeDog() {
-
         String dogName = inputReader.stringReader("Enter the name of the dog");
+        
         while (dogName.isBlank())
             dogName = inputReader.stringReader("Error: the dogs name can not be empty");
 

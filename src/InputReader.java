@@ -25,7 +25,7 @@ public class InputReader {
 
     public int intReader(String promptMessage) {
 
-        System.out.print(promptMessage + "?>");
+        System.out.print(promptMessage + "?> ");
         int inputtedInteger = input.nextInt();
         input.nextLine();
 
@@ -34,7 +34,7 @@ public class InputReader {
 
     public double decimalReader(String promptMessage) {
 
-        System.out.print(promptMessage + "?>");
+        System.out.print(promptMessage + "?> ");
         double inputtedDouble = input.nextDouble();
         input.nextLine();
 
@@ -43,7 +43,7 @@ public class InputReader {
 
     public String stringReader(String promptMessage) {
 
-        System.out.print(promptMessage + "?>");
+        System.out.print(promptMessage + "?> ");
         String inputtedString = input.nextLine();
 
         return inputtedString;

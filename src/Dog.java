@@ -55,7 +55,6 @@ public class Dog {
             return;
 
         this.owner = owner;
-
         if (owner != null && !owner.ownsDog(this))
             owner.recieveDog(this);
     }

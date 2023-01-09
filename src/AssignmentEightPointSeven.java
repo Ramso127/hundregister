@@ -33,7 +33,7 @@ public class AssignmentEightPointSeven {
 
         String ownerName = inputReader.stringReader("Enter the name of the owner");
         while (ownerName.isBlank())
-            ownerName = inputReader.stringReader("Error: the owners name can not be empty");
+            ownerName = inputReader.stringReader("Error: the owners name can't be empty");
 
         Owner owner = findOwner(ownerName);
         if (owner == null) {

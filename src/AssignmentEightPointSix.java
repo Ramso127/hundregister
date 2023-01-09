@@ -32,7 +32,7 @@ public class AssignmentEightPointSix {
 
         String dogName = inputReader.stringReader("Enter the name of the dog");
         while (dogName.isBlank())
-            dogName = inputReader.stringReader("Error: the dogs name can not be empty");
+            dogName = inputReader.stringReader("Error: the dogs name can't be empty");
 
         Dog dog = findDog(dogName);
 

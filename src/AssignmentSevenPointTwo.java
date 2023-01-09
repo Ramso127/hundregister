@@ -29,8 +29,8 @@ public class AssignmentSevenPointTwo {
 
             ArrayList<Dog> dogsWithTailLength = findDogsWithTailLength(smallestTailLength);
 
-            if (dogsWithTailLength.size() < 1)
-                System.out.println("Error: no dog have a tail that long");
+            if (dogsWithTailLength.size() == 0)
+                System.out.println("Error: no dog has a tail that long");
             else {
                 System.out.println("The following dogs has such a large tail:");
 

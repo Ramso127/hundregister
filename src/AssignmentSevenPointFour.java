@@ -3,9 +3,7 @@ import java.util.ArrayList;
 // @author Omar Almassri omal7554
 
 public class AssignmentSevenPointFour {
-
     private InputReader inputReader = new InputReader();
-
     private ArrayList<Dog> dogList = new ArrayList<>();
 
     private Dog findDog(String dogName) {

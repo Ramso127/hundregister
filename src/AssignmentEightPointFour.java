@@ -25,9 +25,7 @@ public class AssignmentEightPointFour {
             if (dog.getTailLength() >= smallestTailLength)
                 dogsWithTailLength.add(dog);
         }
-
         return dogsWithTailLength;
-
     }
 
     public void listDogsWithTailLength() {
