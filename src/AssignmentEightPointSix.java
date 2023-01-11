@@ -121,7 +121,7 @@ public class AssignmentEightPointSix {
 
         ArrayList<Dog> dogsWithTailLength = findDogsWithTailLength(smallestTailLength);
 
-        if (dogsWithTailLength.size() < 1)
+        if (dogsWithTailLength.size() == 0)
             System.out.println("Error: no dog have a tail that long");
         else {
             System.out.println("The following dogs has such a large tail:");

@@ -3,12 +3,7 @@ import java.util.Arrays;
 
 // @author Omar Almassri omal7554
 
-public class Hundregister {
-
-    private ArrayList<Dog> dogList = new ArrayList<>();
-    private ArrayList<Owner> ownerList = new ArrayList<>();
-    private InputReader inputReader = new InputReader();
-    private ArrayList<Dog> dogsToRemove = new ArrayList<>();
+public class DogRegister {
 
     private static final String REGISTER_NEW_DOG_COMMAND = "register new dog";
     private static final String LIST_DOGS_COMMAND = "list dogs";
@@ -21,13 +16,24 @@ public class Hundregister {
     private static final String REMOVE_OWNER_COMMAND = "remove owner";
     private static final String EXIT_COMMAND = "exit";
 
+    private ArrayList<Dog> dogList = new ArrayList<>();
+    private ArrayList<Owner> ownerList = new ArrayList<>();
+    private InputReader inputReader = new InputReader();
+
     public static void main(String[] args) {
-        new Hundregister().run();
+        new DogRegister().run();
     }
 
     private void run() {
         setup();
         runCommandLoop();
+        shutdown();
+    }
+
+    private void setup() {
+        System.out.println("Welcome to the dog registry program!");
+        System.out.println();
+        printCommandMenu();
     }
 
     private void printCommandMenu() {
@@ -42,12 +48,6 @@ public class Hundregister {
         System.out.println("remove owned dog");
         System.out.println("remove owner");
         System.out.println("exit");
-    }
-
-    private void setup() {
-        System.out.println("Welcome to the dog registry program!");
-        System.out.println();
-        printCommandMenu();
     }
 
     private void runCommandLoop() {
@@ -122,34 +122,33 @@ public class Hundregister {
         System.out.println();
     }
 
-    private void swapDogs(int index1, int index2) {
+    //**  byta plats på två hundar i dogList */ 
+    private void swapDogs(int firstIndex, int secondIndex) {
+        // intermediate storage
+        Dog temp = dogList.get(firstIndex); 
 
-        Dog temp = dogList.get(index1); // intermediate storage
-
-        dogList.set(index1, dogList.get(index2));
-        dogList.set(index2, temp);
+        dogList.set(firstIndex, dogList.get(secondIndex));
+        dogList.set(secondIndex, temp);
     }
 
-    // compare 2 dogs then return the one with shorter tail length, if same tail
-    // length sort after name
-    private Dog compareDogs(Dog dog1, Dog dog2) {
-        if (dog1 instanceof Dog && dog2 instanceof Dog) {
-            if (dog1.getTailLength() < dog2.getTailLength())
-                return dog1;
-            else if (dog1.getTailLength() > dog2.getTailLength())
-                return dog2;
-            else { // Sort after dogNames
-                String[] dogNames = { dog2.getName(), dog1.getName() };
-                Arrays.sort(dogNames);
-                if (dog1.getName().equals(dogNames[0]))
-                    return dog1;
-                else
-                    return dog2;
-            }
+    // returns dog with shorter tail length, if same tail length return after name
+    private Dog compareDogs(Dog firstDog, Dog secondDog) {
+
+        if (firstDog.getTailLength() < secondDog.getTailLength())
+            return firstDog;
+        else if (firstDog.getTailLength() > secondDog.getTailLength())
+            return secondDog;
+        else { // Compare names
+            String[] dogNames = { secondDog.getName(), firstDog.getName() };
+            Arrays.sort(dogNames);
+            if (firstDog.getName().equals(dogNames[0]))
+                return firstDog;
+            else
+                return secondDog;
         }
-        return null;
     }
 
+    //**hittar minsta hunden i den osorterade delen av listan*/
     private int findSmallestDog(int startIndex) {
         Dog smallestDog = dogList.get(startIndex);
 
@@ -217,7 +216,7 @@ public class Hundregister {
     private void increaseAge() {
         String dogName = inputReader.stringReader("Enter the name of the dog");
         while (dogName.isBlank())
-            dogName = inputReader.stringReader("Error: the dogs name can't be empty");
+            dogName = inputReader.stringReader("Error: the name can't be empty");
 
         Dog dog = findDog(dogName);
         if (dog == null) {
@@ -232,7 +231,7 @@ public class Hundregister {
         String dogName = inputReader.stringReader("Enter the name of the dog");
 
         while (dogName.isBlank())
-            dogName = inputReader.stringReader("Error: the dogs name can't be empty");
+            dogName = inputReader.stringReader("Error: the name can't be empty");
 
         Dog dog = findDog(dogName);
         if (dog == null) {
@@ -264,7 +263,7 @@ public class Hundregister {
     private void giveDog() {
         String dogName = inputReader.stringReader("Enter the name of the dog");
         while (dogName.isBlank()) {
-            dogName = inputReader.stringReader("Error: the dogs name can't be empty");
+            dogName = inputReader.stringReader("Error: the name can't be empty");
         }
 
         Dog dog = findDog(dogName);
@@ -280,7 +279,7 @@ public class Hundregister {
 
         String ownerName = inputReader.stringReader("Enter the name of the new owner");
         while (ownerName.isBlank()) {
-            ownerName = inputReader.stringReader("Error: the owners name can't be empty");
+            ownerName = inputReader.stringReader("Error: the name can't be empty");
         }
 
         Owner owner = findOwner(ownerName);
@@ -306,7 +305,7 @@ public class Hundregister {
     private void removeOwnedDog() {
         String dogName = inputReader.stringReader("Enter the name of the dog");
         while (dogName.isBlank())
-            dogName = inputReader.stringReader("Error: the dogs name can't be empty");
+            dogName = inputReader.stringReader("Error: the name can't be empty");
 
         Dog dog = findDog(dogName);
 
@@ -328,13 +327,15 @@ public class Hundregister {
     private void removeOwner() {
         String ownerName = inputReader.stringReader("Enter the name of the owner");
         while (ownerName.isBlank())
-            ownerName = inputReader.stringReader("Error: the owners name can't be empty");
+            ownerName = inputReader.stringReader("Error: the name can't be empty");
 
         Owner owner = findOwner(ownerName);
         if (owner == null) {
             System.out.println("Error: no such owner.");
             return;
         }
+
+        ArrayList<Dog> dogsToRemove = new ArrayList<>();
 
         for (Dog dog : dogList) {
             if (owner.getOwnedDogs().containsDog(dog))
@@ -344,5 +345,9 @@ public class Hundregister {
         dogList.removeAll(dogsToRemove);
 
         System.out.println(ownerName + " is removed from the register");
+    }
+
+    private void shutdown() {
+        inputReader.close();
     }
 }

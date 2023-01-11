@@ -10,7 +10,6 @@ public class InputReader {
     private Scanner input;
 
     public InputReader(InputStream in) {
-
         if (inputList.contains(in))
             throw new IllegalStateException("Error: An instance of the scanner is already open.");
 
@@ -19,30 +18,26 @@ public class InputReader {
     }
 
     public InputReader() {
-
         this(System.in);
     }
 
     public int intReader(String promptMessage) {
-
         System.out.print(promptMessage + "?> ");
         int inputtedInteger = input.nextInt();
-        input.nextLine();
+        input.nextLine(); // removes line break that were not caught
 
         return inputtedInteger;
     }
 
     public double decimalReader(String promptMessage) {
-
         System.out.print(promptMessage + "?> ");
         double inputtedDouble = input.nextDouble();
-        input.nextLine();
+        input.nextLine(); // removes line break that were not caught
 
         return inputtedDouble;
     }
 
     public String stringReader(String promptMessage) {
-
         System.out.print(promptMessage + "?> ");
         String inputtedString = input.nextLine();
 
@@ -52,5 +47,4 @@ public class InputReader {
     public void close() {
         input.close();
     }
-
 }

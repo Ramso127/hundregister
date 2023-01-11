@@ -7,7 +7,6 @@ public class AssignmentEightPointSeven {
     private InputReader inputReader = new InputReader();
     private ArrayList<Dog> dogList = new ArrayList<>();
     private ArrayList<Owner> ownerList = new ArrayList<>();
-    private ArrayList<Dog> dogsToRemove = new ArrayList<>();
 
     // 8.2 (find owner with name)
     private Owner findOwner(String name) {
@@ -40,6 +39,8 @@ public class AssignmentEightPointSeven {
             System.out.println("Error: no such owner.");
             return;
         }
+
+        ArrayList<Dog> dogsToRemove = new ArrayList<>();
 
         for (Dog dog : dogList) {
             if (owner.getOwnedDogs().containsDog(dog))

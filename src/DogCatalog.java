@@ -17,11 +17,10 @@ public class DogCatalog {
     }
 
     public void addDog(Dog dog) {
-
         if (dog == null || containsDog(dog))
             return;
 
-        if (amountOfDogs == dogs.length) {
+        if (dogs.length == amountOfDogs) {
             // The Array is full, increase length with 1
             Dog[] newDogs = new Dog[dogs.length + 1];
             System.arraycopy(dogs, 0, newDogs, 0, amountOfDogs);
@@ -33,7 +32,6 @@ public class DogCatalog {
     }
 
     public void removeDog(Dog dog) {
-
         if (dog == null || !(containsDog(dog))) {
             return;
         }
@@ -48,14 +46,12 @@ public class DogCatalog {
                 for (int j = i; j < amountOfDogs; j++) {
                     dogs[j] = dogs[j + 1];
                 }
-
-                // End the loop once the dog has been removed
                 break;
             }
         }
 
-        // Decrease the size of the array if it is more than twice as large as the
-        // number of dogs
+        // controlls and decreases array size so it doesn't become too big and take
+        // unnecessary memory/storage
         if (amountOfDogs * 2 < dogs.length) {
             Dog[] newDogs = new Dog[amountOfDogs];
             System.arraycopy(dogs, 0, newDogs, 0, amountOfDogs);

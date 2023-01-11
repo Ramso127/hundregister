@@ -22,22 +22,20 @@ public class AssignmentSevenPointSeven {
 
     // compare 2 dogs then return the one with shorter tail length, if same tail
     // length sort after name
-    private Dog compareDogs(Dog dog1, Dog dog2) {
-        if (dog1 instanceof Dog && dog2 instanceof Dog) {
-            if (dog1.getTailLength() < dog2.getTailLength())
-                return dog1;
-            else if (dog1.getTailLength() > dog2.getTailLength())
-                return dog2;
+    private Dog compareDogs(Dog firstDog, Dog secondDog) {
+  
+            if (firstDog.getTailLength() < secondDog.getTailLength())
+                return firstDog;
+            else if (firstDog.getTailLength() > secondDog.getTailLength())
+                return secondDog;
             else { // Sort after dogNames
-                String[] dogNames = { dog2.getName(), dog1.getName() };
+                String[] dogNames = { secondDog.getName(), firstDog.getName() };
                 Arrays.sort(dogNames);
-                if (dog1.getName().equals(dogNames[0]))
-                    return dog1;
+                if (firstDog.getName().equals(dogNames[0]))
+                    return firstDog;
                 else
-                    return dog2;
+                    return secondDog;
             }
-        }
-        return null;
     }
 
     private int findSmallestDog(int startIndex) {

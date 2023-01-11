@@ -18,7 +18,7 @@ public class Owner {
         if (dog.getOwner() != null && !dog.getOwner().equals(this))
             return;
 
-        if (!ownedDogs.containsDog(dog)) {
+        if (!ownsDog(dog)) {
             ownedDogs.addDog(dog);
             dog.setOwner(this);
         }
