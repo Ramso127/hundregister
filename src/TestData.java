@@ -1,4 +1,6 @@
-// @author Omar Almassri omal7554
+/**
+ * @author Omar Almassri omal7554
+ */
 
 /**
  * Denna klass är till för att möjliggöra testning av de klasser och metoder som
