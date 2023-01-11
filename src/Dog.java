@@ -4,7 +4,7 @@
 
 public class Dog {
 
-    private final static double DACHSHUND_TAIL_LENGTH = 3.7;
+    private static final double DACHSHUND_TAIL_LENGTH = 3.7;
 
     private String name;
     private String breed;
