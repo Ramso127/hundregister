@@ -2,6 +2,8 @@
 
 public class Dog {
 
+    private final static double DACHSHUND_TAIL_LENGTH = 3.7;
+
     private String name;
     private String breed;
     private int age;
@@ -36,8 +38,7 @@ public class Dog {
         return weight;
     }
 
-    public double getTailLength() {
-        final double DACHSHUND_TAIL_LENGTH = 3.7;
+    public double getTailLength() { 
         if (breed.equals("tax") || breed.equals("dachshund")) {
             tailLength = DACHSHUND_TAIL_LENGTH;
         } else {
