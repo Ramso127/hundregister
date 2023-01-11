@@ -1,4 +1,6 @@
-// @author Omar Almassri omal7554
+/**
+ * @author Omar Almassri omal7554
+ */
 
 public class DogCatalog {
 

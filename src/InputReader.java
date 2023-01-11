@@ -2,7 +2,9 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-// @author Omar Almassri omal7554
+/**
+ * @author Omar Almassri omal7554
+ */
 
 public class InputReader {
 

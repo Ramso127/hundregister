@@ -1,4 +1,6 @@
-// @author Omar Almassri omal7554
+/**
+ * @author Omar Almassri omal7554
+ */
 
 public class Dog {
 
@@ -38,7 +40,7 @@ public class Dog {
         return weight;
     }
 
-    public double getTailLength() { 
+    public double getTailLength() {
         if (breed.equals("tax") || breed.equals("dachshund")) {
             tailLength = DACHSHUND_TAIL_LENGTH;
         } else {
@@ -76,7 +78,7 @@ public class Dog {
         else
             dogsOwner = "";
 
-        return "* " + name + " (" + breed + ", " + age + " years, " + weight + "kilo, " + getTailLength() + " cm tail"
+        return "* " + name + " (" + breed + ", " + age + " years, " + weight + " kilo, " + getTailLength() + " cm tail"
                 + dogsOwner + ")";
     }
 }

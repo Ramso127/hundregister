@@ -1,20 +1,10 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 
-// @author Omar Almassri omal7554
+/**
+ * @author Omar Almassri omal7554
+ */
 
 public class DogRegister {
-
-    private static final String REGISTER_NEW_DOG_COMMAND = "register new dog";
-    private static final String LIST_DOGS_COMMAND = "list dogs";
-    private static final String INCREASE_AGE_COMMAND = "increase age";
-    private static final String REMOVE_DOG_COMMAND = "remove dog";
-    private static final String REGISTER_NEW_OWNER_COMMAND = "register new owner";
-    private static final String GIVE_DOG_COMMAND = "give dog";
-    private static final String LIST_OWNERS_COMMAND = "list owners";
-    private static final String REMOVE_OWNED_DOG_COMMAND = "remove owned dog";
-    private static final String REMOVE_OWNER_COMMAND = "remove owner";
-    private static final String EXIT_COMMAND = "exit";
 
     private ArrayList<Dog> dogList = new ArrayList<>();
     private ArrayList<Owner> ownerList = new ArrayList<>();
@@ -55,7 +45,7 @@ public class DogRegister {
         do {
             command = readCommand();
             handleCommand(command);
-        } while (!command.equals(EXIT_COMMAND));
+        } while (!command.equals("exit"));
     }
 
     private String readCommand() {
@@ -64,35 +54,35 @@ public class DogRegister {
 
     private void handleCommand(String command) {
         switch (command) {
-            case REGISTER_NEW_DOG_COMMAND:
+            case "register new dog":
                 registerNewDog();
                 break;
-            case LIST_DOGS_COMMAND:
+            case "list dogs":
                 sortDogs();
                 listDogsWithTailLength();
                 break;
-            case INCREASE_AGE_COMMAND:
+            case "increase age":
                 increaseAge();
                 break;
-            case REMOVE_DOG_COMMAND:
+            case "remove dog":
                 removeDog();
                 break;
-            case REGISTER_NEW_OWNER_COMMAND:
+            case "register new owner":
                 registerNewOwner();
                 break;
-            case GIVE_DOG_COMMAND:
+            case "give dog":
                 giveDog();
                 break;
-            case LIST_OWNERS_COMMAND:
+            case "list owners":
                 listOwners();
                 break;
-            case REMOVE_OWNED_DOG_COMMAND:
+            case "remove owned dog":
                 removeOwnedDog();
                 break;
-            case REMOVE_OWNER_COMMAND:
+            case "remove owner":
                 removeOwner();
                 break;
-            case EXIT_COMMAND:
+            case "exit":
                 System.out.println("Goodbye!");
                 break;
             default:
@@ -102,7 +92,7 @@ public class DogRegister {
     }
 
     private void registerNewDog() {
-        String name = inputReader.stringReader("Name").strip(); // strip only needed for vpl.
+        String name = inputReader.stringReader("Name").strip();
         while (name.isBlank()) {
             name = inputReader.stringReader("Error: the name can't be empty").strip();
         }
@@ -122,10 +112,9 @@ public class DogRegister {
         System.out.println();
     }
 
-    //**  byta plats på två hundar i dogList */ 
     private void swapDogs(int firstIndex, int secondIndex) {
         // intermediate storage
-        Dog temp = dogList.get(firstIndex); 
+        Dog temp = dogList.get(firstIndex);
 
         dogList.set(firstIndex, dogList.get(secondIndex));
         dogList.set(secondIndex, temp);
@@ -133,22 +122,19 @@ public class DogRegister {
 
     // returns dog with shorter tail length, if same tail length return after name
     private Dog compareDogs(Dog firstDog, Dog secondDog) {
-
+        // compare tailLength
         if (firstDog.getTailLength() < secondDog.getTailLength())
             return firstDog;
         else if (firstDog.getTailLength() > secondDog.getTailLength())
             return secondDog;
-        else { // Compare names
-            String[] dogNames = { secondDog.getName(), firstDog.getName() };
-            Arrays.sort(dogNames);
-            if (firstDog.getName().equals(dogNames[0]))
+        else { // compare dogNames
+            if (firstDog.getName().compareToIgnoreCase(secondDog.getName()) < 0)
                 return firstDog;
             else
                 return secondDog;
         }
     }
 
-    //**hittar minsta hunden i den osorterade delen av listan*/
     private int findSmallestDog(int startIndex) {
         Dog smallestDog = dogList.get(startIndex);
 
