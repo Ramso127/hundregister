@@ -37,10 +37,6 @@ public class Owner {
         dog.removeOwnerOfDog();
     }
 
-    public DogCatalog getOwnedDogs() {
-        return ownedDogs;
-    }
-
     @Override
     public String toString() {
         return name + " [" + ownedDogs.allDogNames() + "]";

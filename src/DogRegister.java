@@ -324,7 +324,7 @@ public class DogRegister {
         ArrayList<Dog> dogsToRemove = new ArrayList<>();
 
         for (Dog dog : dogList) {
-            if (owner.getOwnedDogs().containsDog(dog))
+            if (owner.ownsDog(dog))
                 dogsToRemove.add(dog);
         }
         ownerList.remove(owner);
